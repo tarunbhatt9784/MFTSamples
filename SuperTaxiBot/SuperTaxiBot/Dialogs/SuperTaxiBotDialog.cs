@@ -1,12 +1,8 @@
 ﻿using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
-using Microsoft.Bot.Schema;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,7 +11,6 @@ namespace StoreAzureRGRequests.Dialogs
     public class SuperTaxiBotDialog : ComponentDialog
     {
         private readonly IStatePropertyAccessor<SuperTaxiBotDialog> _userProfileAccessor;
-        private readonly string platforms = "Platform.json";
         public SuperTaxiBotDialog(UserState userState)
             : base(nameof(SuperTaxiBotDialog))
         {
@@ -36,11 +31,8 @@ namespace StoreAzureRGRequests.Dialogs
             AddDialog(new WaterfallDialog(nameof(WaterfallDialog), waterfallSteps));
             AddDialog(new TextPrompt(nameof(TextPrompt)));
             AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
-            AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));
-
-            
-            AddDialog(new ChoicePrompt("CarTypeDialog"));
-            
+            AddDialog(new ConfirmPrompt(nameof(ConfirmPrompt)));            
+            AddDialog(new ChoicePrompt("CarTypeDialog"));            
 
             // The initial child Dialog to run.
             InitialDialogId = nameof(WaterfallDialog);
@@ -107,7 +99,7 @@ namespace StoreAzureRGRequests.Dialogs
             var carType = ((FoundChoice)stepContext.Result).Value;
             
             var reply = $"Thanks for booking a cab with us {name}.";
-            reply = $"{reply} \n\n. You will picked up from {pickUpLocation} at {pickUpTime} and will be dropped at {dropOffLocation}";
+            reply = $"{reply} \n\nYou will picked up from {pickUpLocation} at {pickUpTime} and will be dropped at {dropOffLocation}";
             await stepContext.Context.SendActivityAsync($"{reply}");
 
         

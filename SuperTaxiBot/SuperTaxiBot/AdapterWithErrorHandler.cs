@@ -16,7 +16,7 @@ namespace SuperTaxiBot
         {
             OnTurnError = async (turnContext, exception) =>
             {
-                var message = $"Exception caught : {exception.Message} \n\n {exception.InnerException}\n\n {exception.StackTrace}";
+                var message = $"Exception caught : {exception.Message} \n\n {exception.InnerException}";
                 // Log any leaked exception from the application.
                 logger.LogError(message);
 
