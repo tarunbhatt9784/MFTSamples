@@ -1,4 +1,4 @@
-﻿using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Schema;
 using Microsoft.Extensions.Logging;
@@ -49,27 +49,7 @@ namespace StoreAzureRGRequests.Bots
         }
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
-            //foreach (var member in membersAdded)
-            //{
-            //    if (member.Id != turnContext.Activity.Recipient.Id)
-            //    {
-            //        var reply = MessageFactory.Text("i.	Hi <___>, would you like to create a new cloud resource group or gain access to an existing cloud resource group? ");
-            //        reply.SuggestedActions = new SuggestedActions()
-            //        {
-            //            Actions = new List<CardAction>()
-            //            {
-            //                new CardAction() { Title = "Yes", Type = ActionTypes.ImBack, Value = "Yes" },
-            //                 new CardAction() { Title = "No", Type = ActionTypes.ImBack, Value = "No" }
-            //            },
-            //        };
-            //        await turnContext.SendActivityAsync(reply, cancellationToken);
-
-
-            //    }
-            //}
-
-            await Dialog.RunAsync(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
-
+           await Dialog.RunAsync(turnContext, ConversationState.CreateProperty<DialogState>(nameof(DialogState)), cancellationToken);
 
         }
 
