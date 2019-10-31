@@ -1,4 +1,4 @@
-﻿using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Dialogs.Choices;
 using System;
@@ -101,8 +101,6 @@ namespace StoreAzureRGRequests.Dialogs
             var reply = $"Thanks for booking a cab with us {name}.";
             reply = $"{reply} \n\nYou will picked up from {pickUpLocation} at {pickUpTime} and will be dropped at {dropOffLocation}";
             await stepContext.Context.SendActivityAsync($"{reply}");
-
-        
 
             return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
         }
